@@ -8,31 +8,37 @@
 
     $scope.message = "";
 
-    $scope.displayMessage = function () {
-      $scope.message = checkNumber($scope.dishes);
-      $scope.output = test($scope.dishes);
+    $scope.color = "";
 
-    };
+    // $scope.displayMessage = function () {
+    //   $scope.message = checkNumber($scope.dishes);
+    //   $scope.output = test($scope.dishes);
+    //
+    // };
 
-    function checkNumber (string) {
+    $scope.displayMessage = function (string) {
 
-      var arrayOfStrings = string.split(",");
+      var arrayOfStrings = string.split(",").filter(el => el.trim());
 
       var length = arrayOfStrings.length;
 
       if (arrayOfStrings[0] == '') {
-        return "Please Enter Data First!";
+        $scope.message = "Please Enter Data First!";
+        $scope.color = "red";
       } else if (length < 4) {
-        return "Enjoy!";
+        $scope.message = "Enjoy!";
+        $scope.color = "green";
       } else {
-        return "Too much!";
+        $scope.message = "Too much!";
+        $scope.color = "green";
       }
+      // $scope.message = string;
     }
 
-    function test (string) {
-      var output = string.split(",");
-      return output;
-    }
+    // function test (string) {
+    //   var output = string.split(",").filter(el => el.trim()).length;
+    //   return output;
+    // }
   });
 
 })();
