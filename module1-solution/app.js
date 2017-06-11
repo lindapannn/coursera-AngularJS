@@ -22,7 +22,7 @@
 
       var length = arrayOfStrings.length;
 
-      if (arrayOfStrings[0] == '') {
+      if (length == 0) {
         $scope.message = "Please Enter Data First!";
         $scope.color = "red";
       } else if (length < 4) {
