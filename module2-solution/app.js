@@ -5,13 +5,14 @@
 
   app.controller('ToBuyController', function($scope, ShoppingListCheckOffService){
     var service = ShoppingListCheckOffService;
-
     $scope.shoppingList = service.getToBuyList();
+    $scope.checkoff = function (index){
+      service.checkoff(index);
+    };
   });
   
   app.controller('AlreadyBoughtController', function($scope, ShoppingListCheckOffService){
     var service = ShoppingListCheckOffService;
-
     $scope.boughtList = service.getBoughtList();
   });
 
@@ -47,13 +48,13 @@
 
     ];
 
-    service.boughtList = [
-      {
-        name : "Notebook",
-        quantity : "5"
-      }
-    ];
+    service.boughtList = [];
 
+    service.checkoff = function (index) {
+      var boughtItem = service.shoppingList.splice(index, 1)[0];
+      service.boughtList.push(boughtItem);
+    };
+  
     service.getToBuyList = function() {
       return service.shoppingList;
     };
