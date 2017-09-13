@@ -1,6 +1,6 @@
-<div class = "row">
-    <table>
-        <caption>found {{found.items.length}} dish(es)</caption>
+<div class = "col-md-12">
+    <table class="table table-hover table-bordered ">
+        <caption>found {{list.items.length}} dish(es)</caption>
         <tr>
             <th></th>
             <th>Dish Name</th>
@@ -9,7 +9,7 @@
             <th>Action</th>
         </tr>
     
-        <tr ng-repeat="item in found.items">
+        <tr ng-repeat="item in list.items">
             <td>{{$index + 1}}.</td>
             <td>{{item.name}}</td>
             <td>{{item.short_name}}</td>

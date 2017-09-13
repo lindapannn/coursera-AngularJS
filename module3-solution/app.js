@@ -4,18 +4,39 @@
     var app = angular.module('NarrowItDownApp', [])
     
     app.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
+
+    app.directive('foundItems', function () {
+        var ddo = {
+            templateUrl: 'foundItemsTemplate.html',
+            scope: {
+                items: '<',
+                onRemove: '&'
+            },
+            controller: function () {
+                // var list = this;
+            },
+            controllerAs: 'list',
+            bindToController: true
+        }
+   
+        return ddo;
+    });
   
     app.controller('NarrowItDownController', function ($scope, MenuSearchService ) {
         var ctrl = this;
         var service = MenuSearchService;
         // console.log(this, $scope);
-        ctrl.getItems = function() {
-            service.getMatchedMenuItems()
+        ctrl.getItems = function (searchTerm) {
+            service.getMatchedMenuItems(searchTerm)
             .then(function(result){
                 ctrl.found = result;
                 console.log("after filter");
             }); 
         }; 
+
+        ctrl.removeItems = function (index) {
+            ctrl.found.splice(index, 1);
+        };
     });
 
     app.service('MenuSearchService', function ($http, ApiBasePath) {
@@ -34,10 +55,10 @@
                 }
 
                 angular.forEach(menuList, function(value, key) {
-                //     if (value.description.toLowerCase().indexOf(searchTerm) !== -1)
-                //         {
+                    if (value.description.toLowerCase().indexOf(searchTerm) !== -1)
+                        {
                             foundItems.push(value);
-                //         }
+                        }
                 });
                 
                 // return processed items
