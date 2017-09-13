@@ -12,29 +12,42 @@
                 items: '<',
                 onRemove: '&'
             },
-            controller: function () {
-                // var list = this;
-            },
-            controllerAs: 'list',
+            controller: function () {},
+            controllerAs: 'found',
             bindToController: true
         }
    
+        return ddo;
+    });
+
+    app.directive('itemsLoaderIndicator', function () {
+        var ddo = {
+            templateUrl: 'loader/itemsloaderindicator.template.html',
+            scope: {
+                itemsLoaderIndicator: '<'
+                // pendingTimeout: '<'
+            }
+            
+        }
         return ddo;
     });
   
     app.controller('NarrowItDownController', function ($scope, MenuSearchService ) {
         var ctrl = this;
         var service = MenuSearchService;
+        ctrl.isPending = false;
         // console.log(this, $scope);
         ctrl.getItems = function (searchTerm) {
+            ctrl.isPending = true;
             service.getMatchedMenuItems(searchTerm)
             .then(function(result){
                 ctrl.found = result;
                 console.log("after filter");
+                ctrl.isPending = false;
             }); 
         }; 
 
-        ctrl.removeItems = function (index) {
+        ctrl.removeItem = function (index) {
             ctrl.found.splice(index, 1);
         };
     });

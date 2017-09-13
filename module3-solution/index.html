@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
   </head>
+
 <body ng-controller="NarrowItDownController as ctrl">
    <div class="container">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
@@ -19,14 +21,13 @@
       <button class="btn btn-primary" ng-click="ctrl.getItems(ctrl.searchTerm);">Narrow It Down For Me!</button>
     </div>
 
-    <!-- <ul>
-      <li ng-repeat="item in ctrl.found">{{item.description}} </li>
-    </ul> -->
+    <!-- <items-loader-indicator ng-if="ctrl.isPending"></items-loader-indicator> -->
 
     <!-- found-items should be implemented as a component -->
     <found-items 
       items="ctrl.found"
-      on-remove="ctrl.removeItem(index)">
+      on-remove="ctrl.removeItem(index)"
+      ng-if="ctrl.found.length">
     </found-items>
 
   </div>
