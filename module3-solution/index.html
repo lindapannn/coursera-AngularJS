@@ -8,7 +8,7 @@
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
   </head>
-<body ng-controller="NarrowItDownController">
+<body ng-controller="NarrowItDownController as ctrl">
    <div class="container">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
@@ -16,9 +16,13 @@
       <input type="text" placeholder="search term" class="form-control">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="output()">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="ctrl.getItems();">Narrow It Down For Me!</button>
     </div>
 
+    <ul>
+      <li ng-repeat="item in ctrl.found">{{item.description}} </li>
+    </ul>
+    <!-- {{ctrl.found}} -->
 
     <!-- found-items should be implemented as a component -->
     <found-items found-items="...." on-remove="...."></found-items>
