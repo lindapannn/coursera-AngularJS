@@ -1,0 +1,72 @@
+<div class="container">
+        <h2 id="menu-categories-title" class="text-center">Sign Up</h2>
+        <div class="text-center" ng-if="!signUpCtrl.signedUp">
+          Sign up for our Newsletter!
+        </div>
+      
+        <form name="regForm" ng-if="!signUpCtrl.signedUp" novalidate>
+          <fieldset>
+          <div class="form-group row">
+            <label for="fName" class="col-xs-2 col-form-label">First Name</label>
+            <div class="col-xs-10" ng-class="{ 'has-error': regForm.fName.$invalid && regForm.fName.$touched }">
+              <input type="text" name="fName" class="form-control" id="fName" placeholder="Enter First Name" ng-model="signUpCtrl.reg.firstName" required/>
+              <p class="help-block" ng-if="regForm.fName.$invalid && regForm.fName.$touched">
+                  First name is required.
+              </p>
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <label for="lName" class="col-xs-2 col-form-label">Last Name</label>
+            <div class="col-xs-10" ng-class="{ 'has-error': regForm.lName.$invalid && regForm.lName.$touched }">
+              <input type="text" name="lName" class="form-control" id="lName" placeholder="Enter Last Name" ng-model="signUpCtrl.reg.lastName" required/>
+              <p class="help-block" ng-if="regForm.lName.$invalid && regForm.lName.$touched">
+                  Last name is required.
+              </p>
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <label for="email" class="col-xs-2 col-form-label">Email</label>
+            <div class="col-xs-10" ng-class="{ 'has-error': regForm.email.$invalid && regForm.email.$touched }">
+              <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" ng-model="signUpCtrl.reg.email" required/>
+              <p class="help-block" ng-if="regForm.email.$invalid && regForm.email.$touched">
+                  Email is required.
+              </p>
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <label for="phoneNumber" class="col-xs-2 col-form-label">Phone Number</label>
+            <div class="col-xs-10" ng-class="{ 'has-error': regForm.phoneNumber.$invalid && regForm.phoneNumber.$touched }">
+              <input type="tel" name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Enter Phone Number" ng-model="signUpCtrl.reg.phoneNumber" required/>
+              <p class="help-block" ng-if="regForm.phoneNumber.$invalid && regForm.phoneNumber.$touched">
+                  Phone Number is required.
+              </p>
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <label for="favDish" class="col-xs-2 col-form-label">Your Favourite Dish (short name code)</label>
+            <div class="col-xs-10" ng-class="{ 'has-error': (regForm.favDish.$invalid && regForm.favDish.$touched) || signUpCtrl.favDishInvalid }">
+              <input type="text" name="favDish" class="form-control" id="favDish" placeholder="Enter Your Favourite Dish" ng-model="signUpCtrl.reg.favDish" required/>
+              <p class="help-block" ng-if="regForm.favDish.$invalid && regForm.favDish.$touched">
+                  Short name of your favourite dish is required.
+              </p>
+              <p class="help-block" ng-if="signUpCtrl.favDishInvalid">
+                  No such menu number exists.
+              </p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" ng-disabled="regForm.$invalid" ng-click="signUpCtrl.submit()">Submit</button>
+      
+          </fieldset>
+          
+        </form>
+      
+        <div class="text-center" ng-if="signUpCtrl.signedUp">
+           Your information has been saved. Go to <a ui-sref="public.myinfo">My Info</a> to see your information.
+        </div>
+      
+      </div>
+      
