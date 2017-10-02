@@ -1,0 +1,40 @@
+<div class="container">
+        <h2 id="menu-categories-title" class="text-center">My Info</h2>
+        
+        <div class="text-center" ng-if="!myInfoCtrl.signedUp">
+           Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+        </div>
+      
+        <div ng-if="myInfoCtrl.signedUp">
+          <div>
+            <h3>Your Registered Information</h3>
+      
+            <div class="row">
+              <div class="col-md-2">First Name:</div>
+              <div class="col-md-2">{{ myInfoCtrl.regUser.firstName }}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">Last Name:</div>
+              <div class="col-md-2">{{ myInfoCtrl.regUser.lastName }}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">Email:</div>
+              <div class="col-md-2">{{ myInfoCtrl.regUser.email }}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">Phone Number:</div>
+              <div class="col-md-2">{{ myInfoCtrl.regUser.phoneNumber }}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">Fav Dish Short Code:</div>
+              <div class="col-md-2">{{ myInfoCtrl.regUser.favDish }}</div>
+            </div>
+         </div>
+      
+         <div>
+          <h3>Your Favourite Dish<h3>
+          <menu-item menu-item="myInfoCtrl.userFavDish"></menu-item>
+         </div>
+      
+        </div>
+      </div>
